@@ -1,0 +1,14 @@
+name: Windows 10 RDP
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Setup RDP
+        run: |
+          echo "Starting RDP session..."
+          # Script sederhana menjalankan RDP (simulasi)
+          timeout /t 21600 /nobreak
