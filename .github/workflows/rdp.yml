@@ -12,7 +12,7 @@ jobs:
         run: |
           Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -Value 0
           Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
-          net user github password123 /add
+          net user github gtasamp1@23 /add
           net localgroup administrators github /add
           echo "RDP Aktif"
           ipconfig
