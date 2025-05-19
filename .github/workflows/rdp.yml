@@ -1,4 +1,4 @@
-name: Windows 10 RDP
+name: RDP Windows 10
 
 on:
   workflow_dispatch:
@@ -6,9 +6,14 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    timeout-minutes: 360
     steps:
-      - name: Setup RDP
+      - name: Aktifkan RDP
         run: |
-          echo "Starting RDP session..."
-          # Script sederhana menjalankan RDP (simulasi)
-          timeout /t 21600 /nobreak
+          Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -Value 0
+          Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+          net user github password123 /add
+          net localgroup administrators github /add
+          echo "RDP Aktif"
+          ipconfig
+          ping 127.0.0.1 -n 21600 >nul
